@@ -1,0 +1,33 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-searchbar placeholder="Pesquisar" [(ngModel)]="pesquisa"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+  <ion-list lines="none">
+    <ion-item class="lista-de-acoes" color="light" *ngFor="let acao of acoesBolsa | filtro: pesquisa" (click)="detalheAcao(acao.id)" >
+
+      <ion-avatar slot="start">
+        <img src="{{acao.img}}">
+      </ion-avatar>
+
+      <ion-label>
+        <h2>{{acao.codigo}}</h2>
+        <h3>{{acao.nomeDePregao}}</h3>
+      </ion-label>
+      <ion-text slot="end" >
+        <h6>
+          {{acao.cotacao |  currency:'BRL'}}
+        </h6>
+        <ion-text color="{{acao.indicadorSatus == 'negativo' ? 'danger' : 'success'}}" class="alerta-cotacao">
+          {{acao.indicadorSatus == 'negativo' ? '-' : '+'}} {{acao.indicador}}
+        </ion-text>
+      </ion-text>
+
+
+
+    </ion-item>
+
+
+  </ion-list>
+

@@ -24,3 +24,21 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+.lista-de-acoes {
+  padding-bottom: 5px;
+}
+
+.alerta-cotacao {
+-webkit-animation: alerta-cotacao .99s linear infinite;
+-moz-animation: alerta-cotacao .99s linear infinite;
+-ms-animation: alerta-cotacao .99s linear infinite;
+-o-animation: alerta-cotacao .99s linear infinite;
+animation: alerta-cotacao .99s linear infinite;
+}
+
+@keyframes alerta-cotacao {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 0.2; }
+}

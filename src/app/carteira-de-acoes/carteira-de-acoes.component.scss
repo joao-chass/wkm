@@ -1,0 +1,49 @@
+.codigo-acoes-carteira {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.valor-acoes-carteira {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+.cotacao-acoes-carteira {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  top: 119px;
+  text-align: center;
+}
+
+.carteira-vazia {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.circle {
+  height: 92px;
+  width: 92px;
+  background-color: #ffffff00;
+  border-style: solid;
+  border-color: #2dd36f;
+  border-radius: 50%;
+  display: inline-block;
+  font-size: 61px;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+
+  justify-content: center;
+}

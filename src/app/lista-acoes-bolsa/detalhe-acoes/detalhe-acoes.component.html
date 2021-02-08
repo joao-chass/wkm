@@ -1,0 +1,149 @@
+<ion-content>
+<div class="logo-empresa">
+  <img src="{{acao.img}}" alt="logo empresa">
+  <ion-badge color="secondary">
+    {{acao.codigo}}
+  </ion-badge>
+</div>
+<div class="cabecario">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJPC_2qRso_EC0CirwO2HhK3zFa9DoIk_GqA&usqp=CAU" alt="Imagem Grafico" width="100%">
+</div>
+
+
+  <ion-list lines="none">
+
+
+
+    <ion-item class="lista-de-acoes" color="light"  >
+
+      <ion-label>
+        <ion-icon name="business-outline"></ion-icon> Quantidade de ações
+      </ion-label>
+
+      <ion-text slot="end">
+        {{acao.quatidadeDeAcoes}}
+      </ion-text>
+
+    </ion-item>
+
+
+    <ion-item class="lista-de-acoes" color="light"  >
+
+      <ion-label>
+        <ion-icon name="cash-outline"></ion-icon>
+        Valor da ordem
+      </ion-label>
+
+      <ion-text slot="end" >
+         {{acao.cotacao |  currency:'BRL'}}
+      </ion-text>
+
+    </ion-item>
+
+
+
+  </ion-list>
+
+  <ion-row>
+
+    <ion-header></ion-header>
+    <ion-button (click)="botaoQuantidade('subitrair')" >
+      -
+    </ion-button>
+    <ion-input type="number" placeholder="Digite valor" [(ngModel)]="quantidadeDeOredem"></ion-input>
+    <ion-button (click)="botaoQuantidade('somar')">
+      +
+    </ion-button>
+  </ion-row>
+
+  <ion-row>
+
+  </ion-row>
+
+  <ion-item lines="none" color="light">
+    <ion-text color="dark" slot="start">
+      <h6>Valor total:</h6>
+    </ion-text>
+    <ion-text color="dark" slot="end">
+      <h6>{{acao.cotacao * quantidadeDeOredem  |  currency:'BRL'}}</h6>
+    </ion-text>
+  </ion-item>
+
+
+
+
+
+  <ion-row  >
+    <ion-grid>
+      <ion-button expand="block" color="danger" (click)="solicitacaoDeOrdem('vender')">
+        Vender
+      </ion-button>
+    </ion-grid>
+
+    <ion-grid>
+      <ion-button expand="block" color="success" (click)="solicitacaoDeOrdem('comprar')" >
+        Comprar
+      </ion-button>
+    </ion-grid>
+
+  </ion-row>
+
+
+  <ion-button expand="block" (click)="agendarOrdem = true">
+    Agendar ordem
+    <ion-icon name="time-outline"></ion-icon>
+  </ion-button>
+
+
+</ion-content>
+
+<div class="agendar-ordem" *ngIf="agendarOrdem">
+
+  <ion-list>
+    <ion-item lines='none'>
+      <div class="fechar-agendamento">
+        <ion-icon name="close-outline" (click)="agendarOrdem = false"></ion-icon>
+      </div>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label>Valor da ordem</ion-label>
+      <ion-input placeholder="Digite o valor" type='number' [(ngModel)]="valorAgendado"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Quantidade</ion-label>
+      <ion-input placeholder="Digite o valor" type='number' [(ngModel)]="quantidadeDeOredem"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Selecione o período</ion-label>
+      <ion-select placeholder="validade" [(ngModel)]="tempoAgendamento">
+        <ion-select-option value="5">5s</ion-select-option>
+        <ion-select-option value="10">10s</ion-select-option>
+        <ion-select-option value="20">20s</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-row *ngIf="quantidadeDeOredem && valorAgendado" >
+    <ion-grid>
+      <ion-button expand="block" color="danger" (click)="agendar('vender')">
+        Vender
+      </ion-button>
+    </ion-grid>
+
+    <ion-grid>
+      <ion-button expand="block" color="success" (click)="agendar('comprar')" >
+        Comprar
+      </ion-button>
+    </ion-grid>
+
+  </ion-row>
+
+
+
+</div>
+

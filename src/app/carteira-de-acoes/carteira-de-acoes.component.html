@@ -1,0 +1,62 @@
+<ion-header translucent  >
+  <ion-toolbar>
+    <ion-buttons slot="start" routerLink="/home">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </ion-buttons>
+    <ion-searchbar *ngIf="acoesNaCarteira != 0" placeholder="Pesquisar" [(ngModel)]="pesquisa" ></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="validarCarteira();" >
+      <ion-icon name="refresh-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content>
+      </ion-refresher-content>
+
+</ion-refresher>
+
+  <ion-row >
+    <ion-col size="6" *ngFor="let item of acoesNaCarteira | filtro: pesquisa" >
+      <ion-card>
+        <ion-badge color="primary" class="codigo-acoes-carteira">
+         {{item.codigo }}
+        </ion-badge>
+
+        <ion-badge color="success" class="valor-acoes-carteira"  color="{{item.agendado == false ? 'success' : 'warning'}}">
+          {{item.quatidadeDeAcoes}}
+        </ion-badge>
+
+        <img src="{{item.img}}" alt="Logo ações" width="100%">
+
+        <ion-badge  color="{{item.agendado == false ? 'tertiary' : 'warning'}}" class="cotacao-acoes-carteira">
+
+          {{item.cotacao * item.quatidadeDeAcoes |  currency:'BRL'}}
+         </ion-badge>
+
+
+         <ion-button expand="full" size="small" routerLink='/detalhe-acao/{{item.id}}'>Editar</ion-button>
+
+
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+  <div class="carteira-vazia"  *ngIf="acoesNaCarteira == 0">
+    <div class="circle">
+      <ion-icon name="wallet-outline" color="success"></ion-icon>
+    </div>
+    <ion-chip color="success">
+      <h2>
+        Carteira vazia
+      </h2>
+    </ion-chip>
+
+  </div>
+
+</ion-content>
